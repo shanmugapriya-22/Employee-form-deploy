@@ -1,0 +1,38 @@
+version: '3.8'  # Specify the version of Docker Compose
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend_emp
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=Shan@22it
+      - DB_NAME=new_schema
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_emp
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql_emp
+    environment:
+      MYSQL_ROOT_PASSWORD: Shan@22it
+      MYSQL_DATABASE: new_schema
+    ports:
+      - "3307:3306"  # Map port 3306 for MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
