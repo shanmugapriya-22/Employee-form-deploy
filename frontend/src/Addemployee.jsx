@@ -13,7 +13,7 @@ function EmployeeForm() {
       console.log("Form Data Submitted:", data); // Logging form data for debugging
 
       // Sending data to the backend
-      const response = await axios.post('https://employee-form-deploy.onrender.com/api/employees', data, {
+      const response = await axios.post('https://employee-form-deploy-2.onrender.com/api/employees', data, {
         headers: {
           'Content-Type': 'application/json',
         },
